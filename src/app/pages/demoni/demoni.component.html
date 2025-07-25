@@ -1,0 +1,102 @@
+<section class="bg-[#1C1C1C] border-t border-[#5A4635] py-16 relative">
+  
+  <div class="max-w-7xl mx-auto px-4">
+    <h2 class="text-[#E7E3D8] font-serif text-3xl mb-8 text-center border-b border-[#5A4635] pb-4">
+      <span class="text-[#B41E22]">✧</span> Bestiario Occulto <span class="text-[#B41E22]">✧</span>
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+      @for (demone of demoni; track demone.id) {
+        <div 
+          (click)="mostraDettagli(demone)"
+          class="border border-[#5A4635] bg-[#2E2A25] hover:border-[#B41E22] transition-all cursor-pointer group"
+        >
+          <div class="p-4">
+            <div class="flex justify-between items-start">
+              <h3 class="text-[#E7E3D8] font-serif text-xl">{{ demone.nome }}</h3>
+              <span class="text-xs bg-[#B41E22] text-[#E7E3D8] px-2 py-1">{{ demone.tipo }}</span>
+            </div>
+            <p class="text-[#CFC6B8] italic text-sm mt-1">{{ demone.titolo }}</p>
+          </div>
+          <div class="bg-[#1C1C1C] p-2 border-t border-[#5A4635] text-xs text-[#5A4635] group-hover:text-[#CFC6B8] transition-colors">
+            Ultimo avvistamento: {{ demone.visto_ultima_volta }}
+          </div>
+        </div>
+      }
+    </div>
+
+    @if (demoneSelezionato) {
+      <div class="bg-[#2E2A25] border border-[#B41E22] p-6 relative">
+        <button 
+          (click)="demoneSelezionato = null"
+          class="absolute top-2 right-2 text-[#CFC6B8] hover:text-[#E7E3D8]"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="flex justify-center">
+            <div class="relative border border-[#5A4635] w-full max-w-xs">
+              <img 
+                [src]="demoneSelezionato.sigillo" 
+                [alt]="'Sigillo di ' + demoneSelezionato.nome"
+                class="w-full h-auto object-contain p-4 grayscale hover:grayscale-0 transition-all"
+              >
+              <div class="absolute bottom-0 left-0 right-0 bg-[#1C1C1C] text-[#CFC6B8] text-center text-xs py-1">
+                SIGILLO DI CONTENIMENTO
+              </div>
+            </div>
+        </div>
+
+          <div class="md:col-span-2">
+            <h3 class="text-[#E7E3D8] font-serif text-2xl mb-2 flex items-center gap-2">
+              {{ demoneSelezionato.nome }}
+              <span class="text-[#B41E22] text-lg">◆</span>
+              <span class="text-xs bg-[#B41E22] text-[#E7E3D8] px-2 py-1 rounded ml-2">{{ demoneSelezionato.tipo }}</span>
+            </h3>
+            <p class="text-[#CFC6B8] italic mb-2">{{ demoneSelezionato.titolo }}</p>
+            <div class="flex flex-wrap gap-4 mb-4">
+              <div class="bg-[#1C1C1C] border border-[#5A4635] rounded px-3 py-1 text-xs text-[#E7E3D8]">
+                <span class="font-bold text-[#B41E22]">Livello:</span> {{ demoneSelezionato.livello }}
+              </div>
+              <div class="bg-[#1C1C1C] border border-[#5A4635] rounded px-3 py-1 text-xs text-[#E7E3D8]">
+                <span class="font-bold text-[#B41E22]">Habitat:</span> {{ demoneSelezionato.habitat }}
+              </div>
+              <div class="bg-[#1C1C1C] border border-[#5A4635] rounded px-3 py-1 text-xs text-[#E7E3D8]">
+                <span class="font-bold text-[#B41E22]">Ultimo avvistamento:</span> {{ demoneSelezionato.visto_ultima_volta }}
+              </div>
+            </div>
+            <p class="text-[#CFC6B8] mb-4 italic">{{ demoneSelezionato.descrizione }}</p>
+            
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <h4 class="text-[#B41E22] text-sm font-serif">ALLINEAMENTO</h4>
+                <p class="text-[#E7E3D8]">{{ demoneSelezionato.allineamento }}</p>
+              </div>
+              <div>
+                <h4 class="text-[#B41E22] text-sm font-serif">PERICOLOSITÀ</h4>
+                <div class="flex">
+                  @for (star of [1,2,3,4,5]; track star) {
+                    <i 
+                      class="fas fa-star text-xs mr-1 {{ star <= demoneSelezionato.pericolosita ? 'text-[#B41E22]' : 'text-[#5A4635]' }}"
+                    ></i>
+                  }
+                </div>
+              </div>
+              <div class="col-span-2">
+                <h4 class="text-[#B41E22] text-sm font-serif">DEBOLEZZE</h4>
+                <div class="flex flex-wrap gap-2 mt-1">
+                  @for (debolezza of demoneSelezionato.debolezza; track debolezza) {
+                    <span class="bg-[#1C1C1C] text-[#E7E3D8] text-xs px-2 py-1 border border-[#5A4635]">
+                      {{ debolezza }}
+                    </span>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</section>

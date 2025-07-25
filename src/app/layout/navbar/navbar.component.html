@@ -1,0 +1,66 @@
+<nav class="bg-[#1C1C1C] border-b border-[#5A4635] font-serif backdrop-blur-sm bg-opacity-90">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex-shrink-0 flex items-center">
+        <a routerLink="/" class="flex items-center group">
+          <div class="relative">
+            <div class="absolute -inset-1 bg-[#B41E22] rounded-full blur opacity-75 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <i class="fas fa-pentagon text-[#E7E3D8] relative text-xl"></i>
+          </div>
+          <span class="ml-3 text-[#E7E3D8] text-lg tracking-wider font-cinzel border-l border-[#5A4635] pl-3">
+            雷道 <span class="text-[#CFC6B8]">葛葉</span>
+          </span>
+        </a>
+      </div>
+
+      <div class="hidden md:flex mx-6">
+        <div class="flex space-x-1 bg-[#2E2A25] p-1 rounded-md border border-[#5A4635] shadow-inner">
+          @for (item of navItems; track item.path) {
+            <a 
+              routerLink="{{item.path}}" 
+              routerLinkActive="bg-[#5A4635] text-[#E7E3D8]"
+              class="px-4 py-2 text-sm text-[#CFC6B8] hover:text-[#E7E3D8] hover:bg-[#5A4635]/50 rounded-md transition-all duration-200 flex items-center">
+              <i class="fas {{item.icon}} mr-2 text-xs"></i>
+              {{item.name}}
+            </a>
+          }
+        </div>
+      </div>
+
+      <div class="hidden md:block">
+        <div class="ml-4 flex items-center text-[#5A4635] text-sm tracking-wider">
+          <i class="fas fa-calendar-day mr-2"></i>
+          <span>Era Shōwa {{ currentYear - 1925 }}</span>
+        </div>
+      </div>
+
+      <div class="md:hidden flex items-center">
+        <button 
+          (click)="toggleMenu()"
+          class="text-[#CFC6B8] hover:text-[#E7E3D8] focus:outline-none">
+          <i class="fas {{isMenuOpen ? 'fa-times' : 'fa-bars'}} text-xl"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  @if (isMenuOpen) {
+    <div class="md:hidden bg-[#2E2A25] border-t border-[#5A4635]">
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        @for (item of navItems; track item.path) {
+          <a 
+            routerLink="{{item.path}}"
+            routerLinkActive="bg-[#5A4635] text-[#E7E3D8]"
+            class="block px-3 py-2 text-base text-[#CFC6B8] hover:text-[#E7E3D8] hover:bg-[#5A4635]/50 rounded-md transition-all duration-200">
+            <i class="fas {{item.icon}} mr-2"></i>
+            {{item.name}}
+          </a>
+        }
+        <div class="px-3 py-2 text-sm text-[#5A4635] border-t border-[#5A4635] mt-2">
+          <i class="fas fa-calendar-day mr-2"></i>
+          Era Shōwa {{ currentYear - 1925 }}
+        </div>
+      </div>
+    </div>
+  }
+</nav>

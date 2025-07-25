@@ -1,0 +1,93 @@
+<section class="bg-[#2E2A25] py-16 border-t border-[#5A4635] relative">
+  
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <h2 class="text-[#E7E3D8] font-serif text-3xl mb-12 text-center">
+      <span class="text-[#B41E22]">◆</span> Alleati & Contatti <span class="text-[#B41E22]">◆</span>
+    </h2>
+
+    <div class="flex border-b border-[#5A4635] mb-8 justify-center">
+      @for (char of characterKeys; track char) {
+        <button
+          (click)="setActiveTab(char)"
+          class="px-6 py-3 font-serif text-[#CFC6B8] hover:text-[#E7E3D8] relative transition-all duration-300 group"
+          [class.text-[#E7E3D8]]="activeTab === char"
+        >
+          {{ characters[char].name.split(' ')[0] }}
+          @if (activeTab === char) {
+            <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-[#B41E22]"></div>
+          }
+          <div class="absolute bottom-0 left-1/2 right-1/2 h-0.5 bg-[#B41E22] transition-all duration-300 group-hover:left-0 group-hover:right-0"></div>
+        </button>
+      }
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="md:col-span-1 flex justify-center">
+        <div class="relative border-2 border-[#5A4635] bg-[#1C1C1C] p-2 w-full max-w-xs h-fit shadow-lg">
+          <div class="absolute -top-3 -left-3 bg-[#B41E22] text-[#E7E3D8] text-xs px-2 py-1 font-mono tracking-wider">
+            FILE #{{
+              activeTab === 'narumi' ? 'NEKO-14' : 
+              activeTab === 'tae' ? 'AS-202' : 
+              'POL-667'
+            }}
+          </div>
+          
+          <img 
+            [src]="'' + activeTab + '.webp'" 
+            [alt]="characters[activeTab].name"
+            class="w-full h-auto object-cover grayscale-[15%] contrast-110 transition-all duration-500 hover:grayscale-0"
+          >
+          
+          <div class="absolute -bottom-3 -right-3 bg-[#2E2A25] text-[#CFC6B8] text-xs px-2 py-1 border border-[#5A4635] font-mono">
+            CONFIDENTIAL
+          </div>
+        </div>
+      </div>
+
+      <div class="md:col-span-2">
+        <div class="bg-[#1C1C1C]/70 border border-[#5A4635] p-6 shadow-inner">
+          <div class="mb-6 border-b border-[#5A4635] pb-4">
+            <h3 class="text-[#E7E3D8] font-serif text-2xl tracking-wider">
+              {{ characters[activeTab].name }}
+            </h3>
+            <p class="text-[#B41E22] italic font-light">
+              {{ characters[activeTab].role }}
+            </p>
+          </div>
+
+          <p class="text-[#CFC6B8] mb-6 leading-relaxed">
+            {{ characters[activeTab].description }}
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+            @for (detail of characters[activeTab].details; track detail.label) {
+              <div class="border border-[#5A4635] p-3 hover:border-[#B41E22] transition-colors duration-300 bg-[#1C1C1C]/50">
+                <div class="text-[#B41E22] mb-1 flex items-center">
+                  <i class="fas {{ detail.icon }} mr-2 text-xs"></i>
+                  <span class="text-xs tracking-wider">{{ detail.label }}</span>
+                </div>
+                <div class="text-[#E7E3D8] text-sm font-light">
+                  {{ detail.value }}
+                </div>
+              </div>
+            }
+          </div>
+
+          <div class="border-l-2 border-[#B41E22] pl-4 italic text-[#CFC6B8] relative">
+            <div class="absolute -top-3 -left-3 text-4xl text-[#B41E22] opacity-50">"</div>
+            <p class="pl-2">{{ characters[activeTab].quote }}</p>
+            <div class="text-right mt-2 text-sm text-[#5A4635]">
+              — {{ characters[activeTab].name.split(' ')[0] }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute bottom-4 right-4 opacity-20">
+    <svg width="60" height="60" viewBox="0 0 24 24" class="text-[#B41E22]">
+      <path fill="currentColor" d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91c4.59-1.15 8-5.86 8-10.91V5l-8-3z"/>
+    </svg>
+  </div>
+</section>

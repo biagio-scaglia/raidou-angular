@@ -1,0 +1,92 @@
+<section class="bg-[#1C1C1C] border-t border-b border-[#5A4635] py-16 relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-r from-[#1C1C1C]/90 via-[#1C1C1C]/70 to-[#1C1C1C]/90 pointer-events-none"></div>
+  
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-6">
+      <div>
+        <h2 class="text-[#E7E3D8] font-serif text-3xl mb-2 flex items-center">
+          <span class="text-[#B41E22] mr-3">◆</span>
+          Trailer Ufficiale
+          <span class="text-[#B41E22] ml-3">◆</span>
+        </h2>
+        <p class="text-[#CFC6B8] max-w-2xl">
+          Il nuovo capitolo delle indagini di Raidou Kuzunoha nell'oscurità di Tokyo
+        </p>
+      </div>
+      
+      <div class="bg-[#2E2A25] p-3 border border-[#5A4635] hover:border-[#B41E22] transition-colors duration-300">
+        <img 
+          src="atlus.png" 
+          alt="Atlus Official" 
+          class="h-12 object-contain opacity-90 hover:opacity-100 transition-opacity"
+        >
+      </div>
+    </div>
+
+    <div class="aspect-w-16 aspect-h-9 mb-8 shadow-lg relative">
+      <div class="absolute inset-0 border-2 border-[#5A4635] pointer-events-none"></div>
+      <div class="absolute inset-0 border-[6px] border-transparent border-t-[#5A4635] border-b-[#5A4635] pointer-events-none"></div>
+      
+      <iframe 
+  width="100%" 
+  height="100%" 
+  [src]="trailerUrl"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+  class="min-h-[400px] md:min-h-[500px] bg-[#000] relative z-10">
+</iframe>
+
+      
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+      <div class="border border-[#5A4635] p-4 hover:border-[#B41E22] transition-colors group">
+        <h3 class="text-[#B41E22] font-serif mb-2 flex items-center">
+          <i class="fas fa-calendar-star mr-2"></i>
+          Data di Rilascio
+        </h3>
+        <p class="text-[#E7E3D8] text-xl group-hover:text-[#B41E22] transition-colors">
+          {{releaseDate}}
+        </p>
+      </div>
+      
+      <!-- Piattaforme -->
+      <div class="border border-[#5A4635] p-4 hover:border-[#B41E22] transition-colors group">
+        <h3 class="text-[#B41E22] font-serif mb-2 flex items-center">
+          <i class="fas fa-gamepad mr-2"></i>
+          Piattaforme
+        </h3>
+        <div class="flex flex-wrap gap-2">
+          @for (platform of platforms; track platform) {
+            <span class="bg-[#2E2A25] text-[#CFC6B8] px-2 py-1 text-sm border border-[#5A4635]">
+              {{platform}}
+            </span>
+          }
+        </div>
+      </div>
+      
+      <!-- Collegamenti -->
+      <div class="border border-[#5A4635] p-4 hover:border-[#B41E22] transition-colors group">
+        <h3 class="text-[#B41E22] font-serif mb-2 flex items-center">
+          <i class="fas fa-external-link-alt mr-2"></i>
+          Collegamenti Ufficiali
+        </h3>
+        <div class="flex space-x-4">
+          <a href="#" class="text-[#CFC6B8] hover:text-[#B41E22] transition-colors">
+            <i class="fab fa-steam text-xl"></i>
+          </a>
+          <a href="#" class="text-[#CFC6B8] hover:text-[#B41E22] transition-colors">
+            <i class="fab fa-playstation text-xl"></i>
+          </a>
+          <a href="#" class="text-[#CFC6B8] hover:text-[#B41E22] transition-colors">
+            <i class="fab fa-xbox text-xl"></i>
+          </a>
+          <a href="#" class="text-[#CFC6B8] hover:text-[#B41E22] transition-colors">
+            <i class="fas fa-store text-xl"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
