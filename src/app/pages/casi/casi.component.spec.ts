@@ -1,0 +1,23 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { CasiComponent } from './casi.component';
+
+describe('CasiComponent', () => {
+  let component: CasiComponent;
+  let fixture: ComponentFixture<CasiComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [CasiComponent]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(CasiComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

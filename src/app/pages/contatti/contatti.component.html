@@ -1,0 +1,138 @@
+<section class="bg-[#1C1C1C] min-h-screen py-16 relative overflow-hidden">
+  @if (demonAppears) {
+    <div class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 animate-fadeIn">
+      <div class="text-center max-w-md bg-[#2E2A25] border border-[#B41E22] p-8">
+        <div class="text-[#B41E22] text-5xl mb-4">⚡</div>
+        <h3 class="text-[#E7E3D8] font-serif text-2xl mb-3">ENTITÀ RILEVATA</h3>
+        <p class="text-[#CFC6B8] mb-6">Hai attirato l'attenzione del mondo occulto. Raidou è stato avvertito.</p>
+        <button 
+          (click)="closeDemon()"
+          class="bg-[#B41E22] hover:bg-[#8a161a] text-[#E7E3D8] px-6 py-2 font-serif transition-colors"
+        >
+          SIGILLA
+        </button>
+      </div>
+    </div>
+  }
+
+  <div class="max-w-2xl mx-auto px-4 relative z-10">
+    <div class="border border-[#5A4635] bg-[#2E2A25] p-6 mb-8 text-center">
+      <h2 class="text-[#E7E3D8] font-serif text-3xl mb-2">
+        <i class="fas fa-envelope text-[#B41E22] mr-2"></i>
+        CONTATTI OCCULTI
+        <i class="fas fa-envelope text-[#B41E22] ml-2"></i>
+      </h2>
+      <p class="text-[#CFC6B8] text-sm border-t border-[#5A4635] pt-3">
+        <i class="fas fa-lock text-[#B41E22] mr-1"></i>
+        Comunicazioni protette da sigilli demoniaci
+      </p>
+    </div>
+
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="space-y-5">
+      <div>
+        <label class="block text-[#CFC6B8] text-sm mb-2">
+          <i class="fas fa-user-secret text-[#B41E22] mr-2"></i>
+          NOME IN CODICE
+        </label>
+        <input 
+          formControlName="name" 
+          type="text"
+          class="w-full bg-[#2E2A25] border border-[#5A4635] text-[#E7E3D8] p-3 focus:border-[#B41E22] focus:outline-none"
+          [class.border-[#B41E22]]="contactForm.get('name')?.invalid && contactForm.get('name')?.touched"
+        >
+        @if (contactForm.get('name')?.invalid && contactForm.get('name')?.touched) {
+          <p class="text-[#B41E22] text-xs mt-1">
+            <i class="fas fa-exclamation-circle mr-1"></i> Obbligatorio (min. 2 caratteri)
+          </p>
+        }
+      </div>
+
+      <div>
+        <label class="block text-[#CFC6B8] text-sm mb-2">
+          <i class="fas fa-at text-[#B41E22] mr-2"></i>
+          SEGNALE SPIRITUALE
+        </label>
+        <input 
+          formControlName="email" 
+          type="email"
+          class="w-full bg-[#2E2A25] border border-[#5A4635] text-[#E7E3D8] p-3 focus:border-[#B41E22] focus:outline-none"
+          [class.border-[#B41E22]]="contactForm.get('email')?.invalid && contactForm.get('email')?.touched"
+        >
+        @if (contactForm.get('email')?.invalid && contactForm.get('email')?.touched) {
+          <p class="text-[#B41E22] text-xs mt-1">
+            <i class="fas fa-exclamation-circle mr-1"></i> Inserisci un segnale valido
+          </p>
+        }
+      </div>
+
+      <div>
+        <label class="block text-[#CFC6B8] text-sm mb-2">
+          <i class="fas fa-tag text-[#B41E22] mr-2"></i>
+          TIPO DI MESSAGGIO
+        </label>
+        <select 
+          formControlName="subject"
+          class="w-full bg-[#2E2A25] border border-[#5A4635] text-[#E7E3D8] p-3 focus:border-[#B41E22] focus:outline-none"
+          [class.border-[#B41E22]]="contactForm.get('subject')?.invalid && contactForm.get('subject')?.touched"
+        >
+          <option value="" disabled selected>Seleziona...</option>
+          <option value="caso">Segnalazione caso</option>
+          <option value="demone">Avvistamento demoniaco</option>
+          <option value="aiuto">Richiesta di aiuto</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-[#CFC6B8] text-sm mb-2">
+          <i class="fas fa-scroll text-[#B41E22] mr-2"></i>
+          MESSAGGIO CIFRATO
+        </label>
+        <textarea 
+          formControlName="message" 
+          rows="5"
+          class="w-full bg-[#2E2A25] border border-[#5A4635] text-[#E7E3D8] p-3 focus:border-[#B41E22] focus:outline-none"
+          [class.border-[#B41E22]]="contactForm.get('message')?.invalid && contactForm.get('message')?.touched"
+        ></textarea>
+        @if (contactForm.get('message')?.invalid && contactForm.get('message')?.touched) {
+          <p class="text-[#B41E22] text-xs mt-1">
+            <i class="fas fa-exclamation-circle mr-1"></i> Minimo 10 caratteri
+          </p>
+        }
+      </div>
+
+      <div class="flex items-start">
+        <input 
+          type="checkbox" 
+          id="allowTracking"
+          formControlName="allowTracking"
+          class="mt-1 mr-2 bg-[#2E2A25] border border-[#5A4635] text-[#B41E22] focus:ring-[#B41E22]"
+        >
+        <label for="allowTracking" class="text-[#CFC6B8] text-sm">
+          <i class="fas fa-eye text-[#B41E22] mr-1"></i>
+          Permetti tracciamento spirituale (30% di chance di attirare un'entità)
+        </label>
+      </div>
+
+      <button 
+        type="submit" 
+        class="w-full bg-[#B41E22] hover:bg-[#8a161a] text-[#E7E3D8] py-3 px-4 mt-4 font-serif transition-colors flex items-center justify-center"
+        [disabled]="contactForm.invalid || isSubmitting"
+      >
+        <i class="fas fa-paper-plane mr-2"></i>
+        {{ isSubmitting ? 'INVIO IN CORSO...' : 'INVIA MESSAGGIO OCCULTO' }}
+      </button>
+    </form>
+  </div>
+
+  @if (showToast) {
+    <div class="fixed bottom-4 right-4 bg-[#2E2A25] border border-[#B41E22] text-[#E7E3D8] p-4 max-w-xs z-50 animate-fadeInOut">
+      <div class="flex items-start">
+        <i class="fas fa-check-circle text-[#B41E22] text-xl mr-3 mt-0.5"></i>
+        <div>
+          <p class="font-serif">{{ toastMessage }}</p>
+          <p class="text-[#CFC6B8] text-xs mt-1">Raidou Kuzunoha XIV</p>
+        </div>
+      </div>
+    </div>
+  }
+</section>
